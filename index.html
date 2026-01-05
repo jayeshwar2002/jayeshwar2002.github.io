@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayeshwar Singh | Mechanical Engineer – Robotics & Simulation</title>
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #22d3ee;
+            --hero-overlay: rgba(2, 6, 23, 0.85);
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        /* VISIBILITY FIX: Project Descriptions are now pure black */
+        .project-content p {
+            color: #000000 !important; 
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            padding: 1rem 6%; display: flex;
+            justify-content: space-between; align-items: center; z-index: 1000;
+        }
+        .logo { color: #60a5fa; font-size: 1.4rem; font-weight: 700; }
+        .nav-links { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--hero-overlay), rgba(2, 6, 23, 0.92)),
+                        url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .hero-photo {
+            width: 180px; height: 180px; object-fit: cover; border-radius: 50%;
+            border: 4px solid #60a5fa; box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            background: linear-gradient(135deg, #60a5fa, #22d3ee);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; text-decoration: none; padding: 12px 24px;
+            border-radius: 30px; display: inline-block; font-weight: 600; transition: 0.3s;
+        }
+        .btn-scholar {
+            border: 2px solid #22d3ee; color: #22d3ee; background: transparent;
+            text-decoration: none; padding: 10px 22px; border-radius: 30px;
+            display: inline-block; font-weight: 600; transition: 0.3s; margin: 5px;
+        }
+
+        /* PROJECTS */
+        section { padding: 6rem 8%; background: #0f172a; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+        }
+        .project-header {
+            height: 200px;
+            background: #1e293b;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .project-header img { width: 100%; height: 100%; object-fit: cover; }
+
+        .project-content { padding: 1.8rem; flex-grow: 1; }
+        .project-meta { color: var(--primary); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .project-content h3 { margin: 0.5rem 0 1rem; font-size: 1.4rem; color: #1e293b; font-weight: 800; }
+
+        .tech-details {
+            display: none; background: #f8fafc; padding: 1.5rem; border-radius: 12px;
+            margin-top: 1rem; font-size: 0.9rem; border-left: 4px solid var(--primary); color: #334155;
+        }
+        .tech-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        .tech-table td { padding: 8px; border-bottom: 1px solid #e2e8f0; }
+        .tech-table td:first-child { font-weight: 700; color: #0f172a; }
+
+        .toggle-tech {
+            background: #eff6ff; border: 1px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;
+            width: 100%; margin-top: 10px;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white; padding: 4rem 2rem; border-radius: 24px; text-align: center;
+        }
+        footer { background: #020617; color: #94a3b8; text-align: center; padding: 3rem; }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Jayeshwar Singh</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://drive.google.com/thumbnail?id=1G5jgPdSW4ApSJlKCBbTLyz7A2WYmW8Ey&sz=w500" class="hero-photo" alt="Jayeshwar Singh">
+            <h1>Jayeshwar Singh</h1>
+            <p style="font-size: 1.5rem; color: #e5e7eb; font-weight: 600;">Mechanical Engineer & Researcher</p>
+            <p style="color: #94a3b8; max-width: 700px; margin: 10px auto;">Columbia University (MS Mechanical Engineering)<br>Robotics · Simulation · Computational Mechanics</p>
+            <div class="hero-buttons">
+                <a href="https://drive.google.com/file/d/1ePKJYhovkSimOXARQhGeOHbe8wEqeUGG/view?usp=drive_link" target="_blank" class="btn-scholar">📄 View Resume</a>
+                <a href="https://scholar.google.com/citations?user=SNC-3LEAAAAJ" target="_blank" class="btn-scholar">🎓 Google Scholar</a>
+                <a href="https://www.linkedin.com/in/jayeshwarsingh" target="_blank" class="btn-scholar">LinkedIn Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-container">
+        <div class="edu-card">
+            <div class="school">Columbia University</div>
+            <h3>MS in Mechanical Engineering (Focus: Robotics and Control)</h3>
+            <div class="date">New York, NY | Expected Dec 2026 </div>
+            <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
+                <strong>Relevant Coursework:</strong> Theoretical Robotics, Continuous Control Systems, Applied Robotics, Data Science for Mech. Systems          </p>
+        </div>
+
+        <div class="edu-card">
+            <div class="school">Shiv Nadar Institution of Eminence</div>
+            <h3>BTech in Mechanical Engineering (Focus: Computational Techniques)</h3>
+            <div class="date">Greater Noida, India | May 2025 </div>
+            <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
+                <strong>Academic Standing:</strong> CGPA: 8.29/10 | Achieved 100% result in final year major project
+            </p>
+            <p style="color: #cbd5e1; margin-top: 5px; font-size: 0.9rem;">
+                <strong>Relevant Coursework:</strong> Mechatronics, Computational Fluid Dynamics, Composite Materials, Finite Element Method 
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .edu-container {
+        display: grid;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .edu-card {
+        background: rgba(30, 41, 59, 0.5);
+        padding: 2rem;
+        border-radius: 16px;
+        border-left: 4px solid var(--primary);
+        transition: 0.3s;
+    }
+    .edu-card:hover {
+        background: rgba(30, 41, 59, 0.7);
+        transform: translateX(5px);
+    }
+    .edu-card h3 { color: var(--accent); margin-bottom: 5px; font-size: 1.25rem; }
+    .edu-card .school { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 5px; }
+    .edu-card .date { font-size: 0.95rem; color: #94a3b8; font-weight: 600; }
+</style>
+
+    <section id="projects">
+        <h2 class="section-title">Technical Portfolio</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1w3YRhko24OuDuUQmGyE5mHsPeHUU455N" alt="Quadruped Robot Krabby" onerror="this.style.display='none'; this.parentElement.innerHTML='🐕';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">ROBOTICS · MUJOCO · SIM-TO-REAL</p>
+                    <h3>Quadruped Robot "Krabby"</h3>
+                    <p>Engineered a 12-DOF legged agent using <b>Inverse Kinematics (IK)</b> to map 3D Cartesian trajectories to joint space. Implemented a <b>Trot-Gait scheduler</b> with contact-force estimation to maintain dynamic stability. ACHIEVED stable locomotion at 25.4 cm/sec through Sim-to-Real validation.</p>
+                    <button class="toggle-tech" onclick="toggleTech('krabby-tech')">📊 Technical Spotlight</button>
+                    <div id="krabby-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Max Velocity</td><td>25.4 cm/sec</td></tr>
+                            <tr><td>Controller</td><td>Raspberry Pi (Python)</td></tr>
+                            <tr><td>Simulation</td><td>MuJoCo Digital Twin</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1Px-NQ9Fw411Xc5vt87tUYO-lLXGsIN3q/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">🎥 Watch Journey Video</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1XURgGoFMdBXA2Wz9LkLIG8J5I2PmFocP" alt="UR5 Manipulator" onerror="this.style.display='none'; this.parentElement.innerHTML='🦾';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">KINEMATICS · MATLAB · AUTOMATION</p>
+                    <h3>6-DOF UR5 Elbow Manipulator</h3>
+                    <p>Conducted analytical <b>Denavit-Hartenberg (D-H)</b> frame derivation for an 8-solution IK configuration. Performed <b>Jacobian Singularity Analysis</b> to map the manipulability ellipsoid and identify "dead zones" within the workspace to optimize automated sorting trajectories.</p>
+                    <button class="toggle-tech" onclick="toggleTech('ur5-tech')">📊 Technical Spotlight</button>
+                    <div id="ur5-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Degrees of Freedom</td><td>6 (Revolute)</td></tr>
+                            <tr><td>Software</td><td>MATLAB</td></tr>
+                            <tr><td>Analysis</td><td>Forward & Inverse Kinematics</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1aaUZ13SlBvrJWq7rKlB1xZO0N0URRpO6/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📄 Kinematic Analysis Report</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1uXnRnAHZoOegDP_jZREYxUCaCcnWTf9O" alt="PLA-TPU Composite" onerror="this.style.display='none'; this.parentElement.innerHTML='🧪';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">MATERIALS · ADDITIVE MFG · FEA</p>
+                    <h3>PLA–TPU Composite Optimization</h3>
+                    <p>Designed geometric interlocking interfaces using <b>Non-linear FEA in ABAQUS</b> with a hyperelastic Neo-Hookean model. Validated results through <b>ASTM D638 tensile testing</b> and <b>SEM</b> for porosity assessment and inter-layer adhesion studies.</p>
+                    <button class="toggle-tech" onclick="toggleTech('pla-tech')">📊 Technical Spotlight</button>
+                    <div id="pla-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Software</td><td>ABAQUS / CATIA V5</td></tr>
+                            <tr><td>Testing</td><td>Tensile, SEM, Warpage</td></tr>
+                            <tr><td>DOI</td><td><a href="https://doi.org/10.1177/09544089251390138" target="_blank">10.1177/09544089251390138</a></td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1szzp2FSrCbGnuaZ8D1EfwKyKXRyACvav/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📥 Download Research Paper</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1M6vEwReZKVKZpb6dgPJ5EGNHQr8Uts_b" alt="Mechanical Heart Valve" onerror="this.style.display='none'; this.parentElement.innerHTML='❤️';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">CFD · FSI · ANSYS</p>
+                    <h3>Bi-Leaflet Mechanical Heart Valve Analysis</h3>
+                    <p>Executed transient <b>Fluid-Structure Interaction (FSI)</b> in ANSYS. Modeled blood as a Non-Newtonian fluid under pulsatile flow to analyze <b>Wall Shear Stress (WSS)</b> and vortex formation, validating structural durability against fatigue limits.</p>
+                    <button class="toggle-tech" onclick="toggleTech('heart-tech')">📊 Technical Spotlight</button>
+                    <div id="heart-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Von Mises Stress</td><td>35.32 MPa</td></tr>
+                            <tr><td>Material</td><td>Pyrolytic Carbon</td></tr>
+                            <tr><td>Software</td><td>ANSYS Fluent / Workbench</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/10OR4tRq_lwg5SF8OKUTlt57Z7azjA3p-/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📂 View Transient Analysis Report</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" style="padding: 0 8%;">
+        <div class="contact-box">
+            <h2>Get In Touch</h2>
+            <p><strong>Direct: (646) 220-0302</strong></p>
+            <p>Email: <a href="mailto:singhjayeshwar@gmail.com" style="color:white">singhjayeshwar@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/jayeshwarsingh" style="color:white">jayeshwarsingh</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Jayeshwar Singh | Columbia University Mechanical Engineering</p>
+    </footer>
+
+    <script>
+        function toggleTech(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === 'block';
+            document.querySelectorAll('.tech-details').forEach(d => d.style.display = 'none');
+            el.style.display = isVisible ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>
