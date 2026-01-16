@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayeshwar Singh | Mechanical Engineer – Robotics & Simulation</title>
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #22d3ee;
+            --hero-overlay: rgba(2, 6, 23, 0.85);
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        /* VISIBILITY FIX: Project Descriptions are now pure black */
+        .project-content p {
+            color: #000000 !important; 
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 6%; display: flex;
+            justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .logo { color: #60a5fa; font-size: 1.4rem; font-weight: 700; }
+        .nav-links { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a { color: #e5e7eb; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #60a5fa; }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--hero-overlay), rgba(2, 6, 23, 0.92)),
+                        url('https://lh3.googleusercontent.com/d/1kIsLBSdpuoEmhOB1Pu8UMHISVY3ytV6G');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .hero-photo {
+            width: 200px; height: 200px; object-fit: cover; border-radius: 50%;
+            border: 4px solid #60a5fa; box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .hero-photo:hover { transform: scale(1.05); }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            background: linear-gradient(135deg, #60a5fa, #22d3ee);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; text-decoration: none; padding: 12px 24px;
+            border-radius: 30px; display: inline-block; font-weight: 600; transition: 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); }
+        .btn-scholar {
+            border: 2px solid #22d3ee; color: #22d3ee; background: transparent;
+            text-decoration: none; padding: 10px 22px; border-radius: 30px;
+            display: inline-block; font-weight: 600; transition: 0.3s; margin: 5px;
+        }
+        .btn-scholar:hover { background: rgba(34, 211, 238, 0.1); transform: translateY(-2px); }
+
+        /* SECTIONS */
+        section { padding: 6rem 8%; background: #0f172a; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #e2e8f0; }
+
+        /* ABOUT ME */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 3rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--accent);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #cbd5e1;
+        }
+
+        /* EDUCATION */
+        .edu-container {
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .edu-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+        .edu-card:hover {
+            background: rgba(30, 41, 59, 0.7);
+            transform: translateX(5px);
+        }
+        .edu-card h3 { color: var(--accent); margin-bottom: 5px; font-size: 1.25rem; }
+        .edu-card .school { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 5px; }
+        .edu-card .date { font-size: 0.95rem; color: #94a3b8; font-weight: 600; }
+
+        /* EXPERIENCE */
+        .experience-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .exp-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary);
+            transition: 0.3s;
+        }
+        .exp-card:hover {
+            background: rgba(30, 41, 59, 0.7);
+            transform: translateX(5px);
+        }
+        .exp-card h3 { color: #8b5cf6; font-size: 1.4rem; margin-bottom: 5px; }
+        .exp-card .position { color: var(--accent); font-weight: 600; margin-bottom: 5px; }
+        .exp-card .date { font-size: 0.9rem; color: #94a3b8; margin-bottom: 1rem; }
+        .exp-card ul { margin-left: 1.5rem; color: #cbd5e1; }
+        .exp-card li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .skill-category {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            border-top: 4px solid var(--accent);
+        }
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        .project-header {
+            height: 200px;
+            background: #1e293b;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .project-header img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-header img { transform: scale(1.1); }
+
+        .project-content { padding: 1.8rem; flex-grow: 1; }
+        .project-meta {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+        }
+        .project-content h3 { margin: 0.5rem 0 1rem; font-size: 1.4rem; color: #1e293b; font-weight: 800; }
+
+        .tech-details {
+            display: none; background: #f8fafc; padding: 1.5rem; border-radius: 12px;
+            margin-top: 1rem; font-size: 0.9rem; border-left: 4px solid var(--primary); color: #334155;
+        }
+        .tech-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        .tech-table td { padding: 8px; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
+        .tech-table td:first-child { font-weight: 700; }
+
+        .toggle-tech {
+            background: #eff6ff; border: 1px solid var(--primary); color: var(--primary);
+            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;
+            width: 100%; margin-top: 10px; transition: 0.3s;
+        }
+        .toggle-tech:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white; padding: 4rem 2rem; border-radius: 24px; text-align: center;
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4);
+        }
+        .contact-box h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .contact-box p { margin: 0.8rem 0; }
+        .contact-box a { color: white; text-decoration: underline; }
+
+        footer { background: #020617; color: #94a3b8; text-align: center; padding: 3rem; border-top: 1px solid rgba(59, 130, 246, 0.1); }
+        footer b { color: #60a5fa; }
+
+        @media (max-width: 768px) {
+            section { padding: 4rem 6%; }
+            .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Jayeshwar Singh</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://drive.google.com/thumbnail?id=1G5jgPdSW4ApSJlKCBbTLyz7A2WYmW8Ey&sz=w500" class="hero-photo" alt="Jayeshwar Singh">
+            <h1>Jayeshwar Singh</h1>
+            <p style="font-size: 1.5rem; color: #e5e7eb; font-weight: 600;">Mechanical Engineer & Researcher</p>
+            <p style="color: #94a3b8; max-width: 700px; margin: 10px auto;">Columbia University (MS Mechanical Engineering)<br>Robotics · Simulation · Computational Mechanics</p>
+            <div class="hero-buttons">
+                <a href="https://drive.google.com/file/d/1ePKJYhovkSimOXARQhGeOHbe8wEqeUGG/view?usp=drive_link" target="_blank" class="btn-scholar">📄 View Resume</a>
+                <a href="https://scholar.google.com/citations?user=SNC-3LEAAAAJ" target="_blank" class="btn-scholar">🎓 Google Scholar</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>Hi! I'm Jayeshwar Singh, a mechanical engineer and researcher specializing in robotics, computational mechanics, and fluid dynamics. Currently pursuing my Master's in Mechanical Engineering at Columbia University with a focus on Robotics and Control Systems, I bring hands-on experience from research labs, industry internships, and competitive engineering teams.</p>
+            <p style="margin-top: 1rem;">My work spans across <strong>inverse kinematics</strong>, <strong>CFD/FEA simulations</strong>, <strong>additive manufacturing</strong>, and <strong>biomedical engineering</strong>. I'm passionate about problems where theory meets experimentation and simulation meets design, constantly seeking to bridge the gap between computational models and real-world applications.</p>
+            <p style="margin-top: 1rem;">With published research in composite materials optimization and experience in developing robotics systems from concept to prototype, I'm actively seeking engineering opportunities where I can contribute to innovative solutions in robotics, simulation, and mechanical design.</p>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-container">
+            <div class="edu-card">
+                <div class="school">Columbia University</div>
+                <h3>MS in Mechanical Engineering (Focus: Robotics and Control)</h3>
+                <div class="date">New York, NY | Expected Dec 2026</div>
+                <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
+                    <strong>Relevant Coursework:</strong> Theoretical Robotics, Continuous Control Systems, Applied Robotics, Data Science for Mechanical Systems
+                </p>
+            </div>
+
+            <div class="edu-card">
+                <div class="school">Shiv Nadar Institution of Eminence</div>
+                <h3>BTech in Mechanical Engineering (Focus: Computational Techniques)</h3>
+                <div class="date">Greater Noida, India | May 2025</div>
+                <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
+                    <strong>Academic Standing:</strong> CGPA: 8.29/10 | Achieved 100% result in final year major project
+                </p>
+                <p style="color: #cbd5e1; margin-top: 5px; font-size: 0.9rem;">
+                    <strong>Relevant Coursework:</strong> Mechatronics, Computational Fluid Dynamics, Composite Materials, Finite Element Method
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-container">
+            <div class="exp-card">
+                <h3>Columbia University</h3>
+                <div class="position">Graduate Researcher</div>
+                <div class="date">New York, NY | Sep 2025 - Present</div>
+                <ul>
+                    <li>Designed and developed a 3RRS parallel-mechanism hippotherapy simulator via CAD modeling, kinematic and dynamic analysis, and FEA to replicate horse-like pelvic motion for rehabilitation applications</li>
+                </ul>
+            </div>
+
+            <div class="exp-card">
+                <h3>Shiv Nadar Institution of Eminence</h3>
+                <div class="position">Undergraduate Researcher</div>
+                <div class="date">Greater Noida, India | Aug 2024 - May 2025</div>
+                <ul>
+                    <li>Evaluated mechanical property differences between virgin and recycled polypropylene via tensile testing on extruded samples created on ABAQUS software, highlighting effects of heating variation on mechanical performance</li>
+                    <li>Conducted tensile testing on Universal Testing Machine, performed Scanning Electron Microscopy to assess porosity, and used feeler gauge to measure warpage</li>
+                    <li>Investigated additive manufacturing and composite reinforcement methods to enhance strength and toughness of 3D printed polymers designed on ABAQUS software</li>
+                </ul>
+            </div>
+
+            <div class="exp-card">
+    <h3>UFlex Industries Ltd.</h3>
+    <div class="position">Engineering Intern - Manufacturing & Process Engineering</div>
+    <div class="date">Noida, India | May 2022 - Jul 2022</div>
+    <ul>
+        <li>Worked within the engineering department of a multinational flexible packaging manufacturer, gaining hands-on exposure to large-scale industrial production systems</li>
+        <li>Assisted in process optimization of extrusion, lamination, and printing lines by studying material flow, machine parameters, and downtime causes</li>
+        <li>Collaborated with senior engineers on preventive maintenance planning and root-cause analysis of mechanical failures to improve operational efficiency</li>
+        <li>Developed practical understanding of industrial standards, quality control practices, and safety protocols in high-throughput manufacturing environments</li>
+    </ul>
+</div>
+
+  <div class="exp-card">
+    <h3>Hindustan Aeronautics Limited (HAL)</h3>
+    <div class="position">Industrial Intern – Aerospace Systems & Structural Analysis</div>
+    <div class="date">Bengaluru, India | Jun 2024 – Jul 2024</div>
+    <ul>
+        <li>Gained in-depth exposure to aerospace-grade manufacturing, assembly, and inspection processes within India’s premier defense aerospace organization</li>
+        <li>Studied landing gear systems in fixed- and rotary-wing aircraft, focusing on load paths, shock absorption mechanisms, and fatigue considerations</li>
+        <li>Performed structural modeling and stress analysis of aircraft components using CATIA V5 and ANSYS, applying principles of strength of materials and aerospace design standards</li>
+        <li>Observed non-destructive testing (NDT) techniques, quality assurance workflows, and certification procedures critical to airworthiness and safety compliance</li>
+        <li>Interacted with multidisciplinary teams across design, production, and quality divisions, strengthening systems-level understanding of aerospace engineering programs</li>
+        <li>Applied principles of aerodynamics, strength of materials, and mechanics to analyze aerospace systems, with focused learning on landing gear design and performance using CATIA V5 and ANSYS</li>
+    </ul>
+    </div>
+
+            <div class="exp-card">
+                <h3>Indian Institute of Technology Kanpur</h3>
+                <div class="position">Undergraduate Researcher</div>
+                <div class="date">Kanpur, India | May 2023 - Jul 2023</div>
+                <ul>
+                    <li>Designed bi-leaflet mechanical heart valves and optimized geometric parameters using CAD and CFD simulations to improve flow characteristics</li>
+                    <li>Analyzed wall shear stresses to assess durability and thrombosis risk, enhancing valve efficiency, long-term reliability, and biomedical performance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>🔧 CAD & Design</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SOLIDWORKS</span>
+                    <span class="skill-tag">CATIA V5</span>
+                    <span class="skill-tag">Autodesk Fusion 360</span>
+                    <span class="skill-tag">Parametric Modeling</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>⚙️ Simulation & Analysis</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">ANSYS</span>
+                    <span class="skill-tag">ABAQUS</span>
+                    <span class="skill-tag">FEA</span>
+                    <span class="skill-tag">CFD</span>
+                    <span class="skill-tag">MuJoCo</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>💻 Programming & Tools</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">MATLAB</span>
+                    <span class="skill-tag">Microsoft Office</span>
+                    <span class="skill-tag">PowerPoint</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Technical Portfolio</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1w3YRhko24OuDuUQmGyE5mHsPeHUU455N" alt="Quadruped Robot Krabby">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">ROBOTICS · MUJOCO · SIM-TO-REAL</p>
+                    <h3>Quadruped Robot "Krabby"</h3>
+                    <p>Engineered a 12-DOF legged agent using Inverse Kinematics (IK) to map 3D Cartesian trajectories to joint space. Implemented a Trot-Gait scheduler with contact-force estimation to maintain dynamic stability. Achieved stable locomotion at 25.4 cm/sec through Sim-to-Real validation.</p>
+                    <button class="toggle-tech" onclick="toggleTech('krabby-tech')">📊 Technical Spotlight</button>
+                    <div id="krabby-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Max Velocity</td><td>25.4 cm/sec</td></tr>
+                            <tr><td>Controller</td><td>Raspberry Pi (Python)</td></tr>
+                            <tr><td>Simulation</td><td>MuJoCo Digital Twin</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1Px-NQ9Fw411Xc5vt87tUYO-lLXGsIN3q/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">🎥 Watch Journey Video</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1XURgGoFMdBXA2Wz9LkLIG8J5I2PmFocP" alt="UR5 Manipulator">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">KINEMATICS · MATLAB · AUTOMATION</p>
+                    <h3>6-DOF UR5 Elbow Manipulator</h3>
+                    <p>Conducted analytical Denavit-Hartenberg (D-H) frame derivation for an 8-solution IK configuration. Performed Jacobian Singularity Analysis to map the manipulability ellipsoid and identify "dead zones" within the workspace to optimize automated sorting trajectories.</p>
+                    <button class="toggle-tech" onclick="toggleTech('ur5-tech')">📊 Technical Spotlight</button>
+                    <div id="ur5-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Degrees of Freedom</td><td>6 (Revolute)</td></tr>
+                            <tr><td>Software</td><td>MATLAB</td></tr>
+                            <tr><td>Analysis</td><td>Forward & Inverse Kinematics</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1aaUZ13SlBvrJWq7rKlB1xZO0N0URRpO6/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📄 Kinematic Analysis Report</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1uXnRnAHZoOegDP_jZREYxUCaCcnWTf9O" alt="PLA-TPU Composite" onerror="this.style.display='none'; this.parentElement.innerHTML='🧪';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">MATERIALS · ADDITIVE MFG · FEA · PUBLISHED</p>
+                    <h3>PLA–TPU Composite Optimization</h3>
+                    <p>Designed geometric interlocking interfaces using Non-linear FEA in ABAQUS with a hyperelastic Neo-Hookean model. Validated results through ASTM D638 tensile testing and SEM for porosity assessment and inter-layer adhesion studies.</p>
+                    <button class="toggle-tech" onclick="toggleTech('pla-tech')">📊 Technical Spotlight</button>
+                    <div id="pla-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Software</td><td>ABAQUS / CATIA V5</td></tr>
+                            <tr><td>Testing</td><td>Tensile, SEM, Warpage</td></tr>
+                            <tr><td>DOI</td><td><a href="https://doi.org/10.1177/09544089251390138" target="_blank">10.1177/09544089251390138</a></td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1szzp2FSrCbGnuaZ8D1EfwKyKXRyACvav/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📥 Download Research Paper</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <img src="https://lh3.googleusercontent.com/d/1M6vEwReZKVKZpb6dgPJ5EGNHQr8Uts_b" alt="Mechanical Heart Valve" onerror="this.style.display='none'; this.parentElement.innerHTML='❤️';">
+                </div>
+                <div class="project-content">
+                    <p class="project-meta">CFD · FSI · ANSYS · IIT KANPUR</p>
+                    <h3>Bi-Leaflet Mechanical Heart Valve Analysis</h3>
+                    <p>Executed transient Fluid-Structure Interaction (FSI) in ANSYS. Modeled blood as a Non-Newtonian fluid under pulsatile flow to analyze Wall Shear Stress (WSS) and vortex formation, validating structural durability against fatigue limits.</p>
+                    <button class="toggle-tech" onclick="toggleTech('heart-tech')">📊 Technical Spotlight</button>
+                    <div id="heart-tech" class="tech-details">
+                        <table class="tech-table">
+                            <tr><td>Von Mises Stress</td><td>35.32 MPa</td></tr>
+                            <tr><td>Material</td><td>Pyrolytic Carbon</td></tr>
+                            <tr><td>Software</td><td>ANSYS Fluent / Workbench</td></tr>
+                        </table>
+                    </div>
+                    <a href="https://drive.google.com/file/d/10OR4tRq_lwg5SF8OKUTlt57Z7azjA3p-/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📂 View Transient Analysis Report</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="leadership">
+        <h2 class="section-title">Leadership & Extra-Curricular</h2>
+
+
+        <div class="experience-container">
+            <div class="exp-card">
+                <h3>Mechanical Engineering Graduate Association (MEGA)</h3>
+                <div class="position">Chairperson of MS Student Advocacy</div>
+                <div class="date">Columbia University | Dec 2025 - Present</div>
+                <ul>
+                    <li>Acted as the primary liaison between students, faculty, and administration to address concerns and improve departmental processes</li>
+                    <li>Organized feedback forums, drove policy improvements, and ensured transparent communication to strengthen student support and engagement</li>
+                </ul>
+            </div>
+
+            <div class="exp-card">
+                <h3>Department Representative</h3>
+                <div class="position">Graduate Mechanical Engineering Batch of 2026</div>
+                <div class="date">Columbia University | Sep 2025 - Present</div>
+                <ul>
+                    <li>Developed and implemented a resource management system that increased study material accessibility, resulting in a 30% increase in student usage of study materials and improved research outcomes over a semester</li>
+                </ul>
+            </div>
+
+         <div class="exp-card">
+             <h3>Imprints – Dramatics Society</h3>
+             <div class="position">President</div>
+             <div class="date">Shiv Nadar University | Aug 2022 – May 2025</div>
+             <ul>
+                 <li>Led the university’s official dramatics society, managing a multidisciplinary team of performers, writers, designers, and technical crew</li>
+                 <li>Directed and produced stage performances, street plays, and competitive productions, coordinating logistics, rehearsals, and creative direction</li>
+                 <li>Oversaw event planning, budgeting, and inter-university collaborations while mentoring junior members in performance, leadership, and team dynamics</li>
+                 <li>Strengthened communication, public engagement, and organizational leadership skills through high-pressure live performances and outreach initiatives</li>
+             </ul>
+         </div>
+<footer>
+    <div style="max-width:900px;margin:auto;display:grid;gap:1.5rem;text-align:center">
+        
+        <h3 style="color:#e5e7eb;font-size:1.4rem">
+            Let's Build Something Interesting
+        </h3>
+
+        <p style="color:#94a3b8;max-width:600px;margin:auto">
+            Open to research collaborations, robotics internships, and mechanical design roles.
+            Feel free to reach out — I usually reply fast.
+        </p>
+
+        <div style="display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap">
+            <a href="mailto:js6208@columbia.edu" class="btn-scholar"> Email</a>
+            <a href="https://www.linkedin.com/in/jayeshwarsingh" target="_blank" class="btn-scholar">LinkedIn</a>
+            <a href="tel:+16462200302" class="btn-scholar"> Phone number</a>
+        </div>
+
+        <hr style="border:0;border-top:1px solid rgba(59,130,246,.2);margin:2rem 0">
+
+        <p style="font-size:.9rem;color:#94a3b8">
+            © 2026 <b style="color:#60a5fa">Jayeshwar Singh</b> · Mechanical Engineering · Robotics · Simulation
+        </p>
+    </div>
+</footer>
+
+         
