@@ -1,618 +1,1091 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jayeshwar Singh — Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --ink-soft: #4a4a4a;
+    --ink-muted: #8a8a8a;
+    --paper: #fafaf7;
+    --cream: #f3f1eb;
+    --cream-dark: #e8e4da;
+    --accent: #1a3a5c;
+    --accent-mid: #2d5f8a;
+    --accent-light: #d4e4f0;
+    --gold: #b8882a;
+    --gold-light: #f5ead3;
+    --border: rgba(13,13,13,0.12);
+    --border-strong: rgba(13,13,13,0.25);
+  }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="chmWDPjDB4WOgODO4vp6EgljVTF8dJhfDMc_buw7fWY" />
-    <title>Jayeshwar Singh | Mechanical Engineer – Robotics & Simulation</title>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
 
-    <style>
-        :root {
-            --bg-dark: #020617;
-            --primary: #3b82f6;
-            --secondary: #8b5cf6;
-            --accent: #22d3ee;
-            --hero-overlay: rgba(2, 6, 23, 0.85);
-        }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-        }
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5rem;
+    height: 64px;
+    background: rgba(250,250,247,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
 
-        /* VISIBILITY FIX: Project Descriptions are now pure black */
-        .project-content p {
-            color: #000000 !important; 
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-left {
+    background: var(--accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.018) 60px,
+      rgba(255,255,255,0.018) 61px
+    );
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 340px;
+    line-height: 1.85;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .hero-cta { display: flex; gap: 1rem; position: relative; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-light { background: #fff; color: var(--accent); border: 1px solid #fff; }
+  .btn-light:hover { background: var(--accent-light); border-color: var(--accent-light); }
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.65); color: #fff; background: rgba(255,255,255,0.06); }
 
-        /* NAV */
-        .navbar {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 6%; display: flex;
-            justify-content: space-between; align-items: center; z-index: 1000;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-        }
-        .logo { color: #60a5fa; font-size: 1.4rem; font-weight: 700; }
-        .nav-links { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
-        .nav-links a { color: #e5e7eb; text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #60a5fa; }
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+  .hero-photo-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+  }
+  .hero-photo-wrap {
+    position: relative;
+    width: 300px;
+    height: 370px;
+  }
+  .hero-photo-frame {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    z-index: 0;
+  }
+  .hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(15%) contrast(1.05);
+  }
+  .hero-stat-bar {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
 
-        /* HERO SECTION */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; padding: 8rem 2rem 4rem;
-            background: linear-gradient(180deg, var(--hero-overlay), rgba(2, 6, 23, 0.92)),
-                        url('https://lh3.googleusercontent.com/d/1kIsLBSdpuoEmhOB1Pu8UMHISVY3ytV6G');
-            background-size: cover; background-position: center; background-attachment: fixed;
-        }
-        .hero-photo {
-            width: 200px; height: 200px; object-fit: cover; border-radius: 50%;
-            border: 4px solid #60a5fa; box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s;
-        }
-        .hero-photo:hover { transform: scale(1.05); }
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            background: linear-gradient(135deg, #60a5fa, #22d3ee);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
+  /* SECTIONS */
+  section { padding: 7rem 5rem; }
+  section:nth-child(even) { background: var(--cream); }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; text-decoration: none; padding: 12px 24px;
-            border-radius: 30px; display: inline-block; font-weight: 600; transition: 0.3s;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); }
-        .btn-scholar {
-            border: 2px solid #22d3ee; color: #22d3ee; background: transparent;
-            text-decoration: none; padding: 10px 22px; border-radius: 30px;
-            display: inline-block; font-weight: 600; transition: 0.3s; margin: 5px;
-        }
-        .btn-scholar:hover { background: rgba(34, 211, 238, 0.1); transform: translateY(-2px); }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4.5rem;
+  }
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 0.3rem;
+  }
 
-        /* SECTIONS */
-        section { padding: 6rem 8%; background: #0f172a; }
-        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #e2e8f0; }
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 5rem;
+    max-width: 1050px;
+  }
+  .about-aside-item { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .about-aside-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .about-aside-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.4rem;
+  }
+  .about-aside-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .about-body p {
+    font-size: 1.02rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    line-height: 1.85;
+  }
+  .about-body p strong { color: var(--ink); font-weight: 500; }
 
-        /* ABOUT ME */
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(30, 41, 59, 0.5);
-            padding: 3rem;
-            border-radius: 20px;
-            border-left: 4px solid var(--accent);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            color: #cbd5e1;
-        }
+  /* EDUCATION */
+  .edu-list { max-width: 900px; }
+  .edu-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .edu-item:first-child { border-top: 1px solid var(--border); }
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    padding-top: 0.35rem;
+  }
+  .edu-school {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .edu-degree { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 0.75rem; }
+  .edu-courses { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.7; }
+  .edu-gpa {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gold-light);
+    color: var(--gold);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
 
-        /* EDUCATION */
-        .edu-container {
-            display: grid;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .edu-card {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 2rem;
-            border-radius: 16px;
-            border-left: 4px solid var(--primary);
-            transition: 0.3s;
-        }
-        .edu-card:hover {
-            background: rgba(30, 41, 59, 0.7);
-            transform: translateX(5px);
-        }
-        .edu-card h3 { color: var(--accent); margin-bottom: 5px; font-size: 1.25rem; }
-        .edu-card .school { font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 5px; }
-        .edu-card .date { font-size: 0.95rem; color: #94a3b8; font-weight: 600; }
+  /* EXPERIENCE */
+  .exp-list { max-width: 900px; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 0 3rem;
+    padding: 2.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.73rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.35rem;
+    padding-top: 0.3rem;
+  }
+  .exp-location { font-size: 0.78rem; color: var(--ink-muted); font-style: italic; }
+  .exp-org {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+  .exp-role {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 0.55rem;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+  }
 
-        /* EXPERIENCE */
-        .experience-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .exp-card {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--secondary);
-            transition: 0.3s;
-        }
-        .exp-card:hover {
-            background: rgba(30, 41, 59, 0.7);
-            transform: translateX(5px);
-        }
-        .exp-card h3 { color: #8b5cf6; font-size: 1.4rem; margin-bottom: 5px; }
-        .exp-card .position { color: var(--accent); font-weight: 600; margin-bottom: 5px; }
-        .exp-card .date { font-size: 0.9rem; color: #94a3b8; margin-bottom: 1rem; }
-        .exp-card ul { margin-left: 1.5rem; color: #cbd5e1; }
-        .exp-card li { margin-bottom: 0.5rem; line-height: 1.6; }
+  /* SKILLS */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-block {
+    background: #fff;
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+  }
+  .skill-block:last-child { border-right: none; }
+  .skill-block-icon {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--accent);
+  }
+  .skill-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .skill-tags-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.73rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
 
-        /* SKILLS */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .skill-category {
-            background: rgba(30, 41, 59, 0.5);
-            padding: 2rem;
-            border-radius: 16px;
-            border-top: 4px solid var(--accent);
-        }
-        .skill-category h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .skill-tag {
-            background: rgba(59, 130, 246, 0.2);
-            color: #60a5fa;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .project-card {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.25s;
+  }
+  .project-card:hover { background: var(--cream); }
+  .project-img {
+    width: 100%; height: 210px; object-fit: cover; display: block;
+    filter: grayscale(20%) contrast(1.04);
+    transition: filter 0.3s;
+  }
+  .project-card:hover .project-img { filter: grayscale(0%) contrast(1.05); }
+  .project-placeholder {
+    width: 100%; height: 210px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; color: rgba(255,255,255,0.25); letter-spacing: 0.2em;
+  }
+  .project-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .project-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .project-tag + .project-tag::before { content: '·'; margin-right: 0.5rem; color: var(--border-strong); }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+  .project-details {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .project-details.open { display: block; }
+  .project-spec {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-spec:last-child { border-bottom: none; }
+  .project-spec-label { color: var(--ink-muted); }
+  .project-spec-value { color: var(--ink); font-weight: 500; }
+  .project-spec-value a { color: var(--accent); text-decoration: none; }
+  .project-actions { display: flex; gap: 0.75rem; align-items: center; margin-top: auto; }
+  .btn-proj {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-proj-primary { background: var(--accent); color: #fff; border: none; }
+  .btn-proj-primary:hover { background: var(--accent-mid); }
+  .btn-proj-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-proj-secondary:hover { border-color: var(--ink); color: var(--ink); }
 
-        /* PROJECTS */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
-        }
-        .project-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-        .project-header {
-            height: 200px;
-            background: #1e293b;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
-        .project-header img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.3s;
-        }
-        .project-card:hover .project-header img { transform: scale(1.1); }
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 900px;
+    align-items: start;
+  }
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+  .contact-sub { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.6rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.2s;
+    background: #fff;
+  }
+  .contact-link:hover { border-color: var(--border-strong); background: var(--cream); }
+  .contact-icon {
+    width: 34px; height: 34px;
+    background: var(--accent-light);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0; color: var(--accent);
+  }
+  .contact-link-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    display: block;
+  }
+  .contact-link-value { font-size: 0.88rem; color: var(--ink); font-weight: 500; }
 
-        .project-content { padding: 1.8rem; flex-grow: 1; }
-        .project-meta {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 15px;
-        }
-        .project-content h3 { margin: 0.5rem 0 1rem; font-size: 1.4rem; color: #1e293b; font-weight: 800; }
+  .avail-card {
+    background: var(--accent);
+    color: #fff;
+    padding: 2.5rem;
+    border-radius: 2px;
+  }
+  .avail-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: #4ade80;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .avail-status {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.25rem;
+  }
+  .avail-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 1.25rem;
+  }
+  .avail-list { list-style: none; }
+  .avail-list li {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.65);
+    padding: 0.4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .avail-list li::before { content: '→'; color: rgba(255,255,255,0.35); font-size: 0.75rem; }
 
-        .tech-details {
-            display: none; background: #f8fafc; padding: 1.5rem; border-radius: 12px;
-            margin-top: 1rem; font-size: 0.9rem; border-left: 4px solid var(--primary); color: #334155;
-        }
-        .tech-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-        .tech-table td { padding: 8px; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
-        .tech-table td:first-child { font-weight: 700; }
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 2rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+  }
 
-        .toggle-tech {
-            background: #eff6ff; border: 1px solid var(--primary); color: var(--primary);
-            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600;
-            width: 100%; margin-top: 10px; transition: 0.3s;
-        }
-        .toggle-tech:hover {
-            background: var(--primary);
-            color: white;
-        }
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* CONTACT */
-        .contact-box {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            color: white; padding: 4rem 2rem; border-radius: 24px; text-align: center;
-            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.4);
-        }
-        .contact-box h2 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .contact-box p { margin: 0.8rem 0; }
-        .contact-box a { color: white; text-decoration: underline; }
-
-        footer { background: #020617; color: #94a3b8; text-align: center; padding: 3rem; border-top: 1px solid rgba(59, 130, 246, 0.1); }
-        footer b { color: #60a5fa; }
-
-        @media (max-width: 768px) {
-            section { padding: 4rem 6%; }
-            .projects-grid, .skills-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 1.5rem 3rem; min-height: 70vh; }
+    .hero-photo-area { padding: 3rem 1.5rem; }
+    .hero-stat-bar { padding: 1.5rem; gap: 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .edu-item, .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .skill-block { border-right: none; border-bottom: 1px solid var(--border); }
+    .skill-block:last-child { border-bottom: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
 </head>
-
 <body>
 
-    <nav class="navbar">
-        <div class="logo">Jayeshwar Singh</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#leadership">Leadership</a></li>
-            <li><a href="#contact">Contact</a></li>
+<nav>
+  <a href="#home" class="nav-logo">Jayeshwar Singh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="home" class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Mechanical Engineer &amp; Researcher</div>
+    <h1 class="hero-name">Jayeshwar<br><em>Singh</em></h1>
+    <p class="hero-desc">Columbia University MS Candidate in Mechanical Engineering. Specializing in robotics, computational mechanics, and fluid dynamics simulation.</p>
+    <div class="hero-cta">
+      <a href="https://drive.google.com/file/d/1n3cAY4CYcMmxadsYuCdhxPiC5n3QUxsB/view" target="_blank" class="btn btn-light">View Résumé</a>
+      <a href="https://scholar.google.com/citations?user=SNC-3LEAAAAJ" target="_blank" class="btn btn-ghost">Google Scholar</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-area">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-frame"></div>
+        <img src="https://drive.google.com/thumbnail?id=1G5jgPdSW4ApSJlKCBbTLyz7A2WYmW8Ey&sz=w500" class="hero-photo" alt="Jayeshwar Singh">
+      </div>
+    </div>
+    <div class="hero-stat-bar">
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Publications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label">Projects</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8.29</div>
+        <div class="hero-stat-label">CGPA / 10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-up">
+    <span class="section-label">01</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">About</h2>
+  </div>
+  <div class="about-grid fade-up">
+    <div class="about-aside">
+      <div class="about-aside-item">
+        <div class="about-aside-label">Currently</div>
+        <div class="about-aside-value">Columbia University<br>MS Mechanical Engineering</div>
+      </div>
+      <div class="about-aside-item">
+        <div class="about-aside-label">Location</div>
+        <div class="about-aside-value">New York, NY</div>
+      </div>
+      <div class="about-aside-item">
+        <div class="about-aside-label">Focus</div>
+        <div class="about-aside-value">Robotics · CFD/FEA<br>Additive Manufacturing<br>Biomedical Engineering</div>
+      </div>
+      <div class="about-aside-item">
+        <div class="about-aside-label">Status</div>
+        <div class="about-aside-value" style="font-size:0.88rem; color:#2d7a3a; font-family:'DM Sans',sans-serif;">
+          <span class="avail-dot" style="background:#4ade80;"></span>Open to opportunities
+        </div>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>I'm a mechanical engineer and researcher at the intersection of <strong>robotics, computational mechanics, and fluid dynamics</strong>. Currently pursuing my Master's at Columbia University focused on Robotics and Control Systems — building systems that work in both simulation and the real world.</p>
+      <p>My research spans <strong>inverse kinematics</strong>, <strong>CFD and FEA simulation</strong>, <strong>additive manufacturing</strong>, and <strong>biomedical device design</strong>. I'm drawn to problems where rigorous theory must survive contact with physical reality.</p>
+      <p>With published research in composite material optimization and hands-on experience designing robotic systems from concept through prototype, I'm seeking engineering roles at the frontier of robotics and mechanical design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-up">
+    <span class="section-label">02</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-list">
+    <div class="edu-item fade-up">
+      <div class="edu-date">Expected<br>Dec 2026</div>
+      <div>
+        <div class="edu-school">Columbia University</div>
+        <div class="edu-degree">MS in Mechanical Engineering — Robotics &amp; Control</div>
+        <div class="edu-courses">Theoretical &amp; Applied Robotics · Industrial Automation · Biomedical Design · Data Science for Mechanical Systems · Computational Fluid Dynamics · Continuous Control Systems</div>
+      </div>
+    </div>
+    <div class="edu-item fade-up">
+      <div class="edu-date">May 2025</div>
+      <div>
+        <div class="edu-school">Shiv Nadar Institution of Eminence</div>
+        <div class="edu-degree">BTech in Mechanical Engineering — Computational Techniques</div>
+        <div class="edu-courses">Mechatronics · Computational Fluid Dynamics · Composite Materials · Finite Element Method</div>
+        <div class="edu-gpa">CGPA 8.29 / 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-up">
+    <span class="section-label">03</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Sep 2025 – Present</div><div class="exp-location">New York, NY</div></div>
+      <div>
+        <div class="exp-org">Columbia University</div>
+        <div class="exp-role">Graduate Researcher</div>
+        <ul class="exp-bullets">
+          <li>Designed and developed a 3RRS parallel-mechanism hippotherapy simulator via CAD modeling, kinematic and dynamic analysis, and FEA to replicate horse-like pelvic motion for rehabilitation applications.</li>
         </ul>
-    </nav>
+      </div>
+    </div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="https://drive.google.com/thumbnail?id=1G5jgPdSW4ApSJlKCBbTLyz7A2WYmW8Ey&sz=w500" class="hero-photo" alt="Jayeshwar Singh">
-            <h1>Jayeshwar Singh</h1>
-            <p style="font-size: 1.5rem; color: #e5e7eb; font-weight: 600;">Mechanical Engineer & Researcher</p>
-            <p style="color: #94a3b8; max-width: 700px; margin: 10px auto;">Columbia University (MS Mechanical Engineering)<br>Robotics · Simulation · Computational Mechanics</p>
-            <div class="hero-buttons">
-                <a href="https://drive.google.com/file/d/1n3cAY4CYcMmxadsYuCdhxPiC5n3QUxsB/view?usp=sharing" target="_blank" class="btn-scholar">📄 View Resume</a>
-                <a href="https://scholar.google.com/citations?user=SNC-3LEAAAAJ" target="_blank" class="btn-scholar">🎓 Google Scholar</a>
-            </div>
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Jan – May 2026</div><div class="exp-location">New York, NY</div></div>
+      <div>
+        <div class="exp-org">Columbia University</div>
+        <div class="exp-role">Teaching Assistant — Digital Manufacturing</div>
+        <ul class="exp-bullets">
+          <li>Instructed and evaluated students on laser printing, 3D printing, embroidery, and food 3D printing under Professor Jonathan Blutinger.</li>
+          <li>Facilitated lectures, led technical discussions, and conducted one-on-one student consultations.</li>
+          <li>Provided hands-on guidance in additive manufacturing technologies, bridging theory with lab practice.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Jun – Jul 2024</div><div class="exp-location">Bengaluru, India</div></div>
+      <div>
+        <div class="exp-org">Hindustan Aeronautics Limited</div>
+        <div class="exp-role">Industrial Intern — Aerospace Systems &amp; Structural Analysis</div>
+        <ul class="exp-bullets">
+          <li>Studied landing gear systems in fixed- and rotary-wing aircraft, focusing on load paths, shock absorption, and fatigue.</li>
+          <li>Performed structural modeling and stress analysis using CATIA V5 and ANSYS to aerospace design standards.</li>
+          <li>Observed NDT techniques, quality assurance workflows, and airworthiness certification procedures.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Aug 2024 – May 2025</div><div class="exp-location">Greater Noida, India</div></div>
+      <div>
+        <div class="exp-org">Shiv Nadar Institution of Eminence</div>
+        <div class="exp-role">Undergraduate Researcher</div>
+        <ul class="exp-bullets">
+          <li>Evaluated mechanical property differences between virgin and recycled polypropylene via tensile testing on ABAQUS-modeled samples.</li>
+          <li>Conducted SEM to assess porosity and used feeler gauge measurements for warpage analysis.</li>
+          <li>Investigated composite reinforcement methods to enhance strength and toughness of 3D-printed polymers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">May – Jul 2023</div><div class="exp-location">Kanpur, India</div></div>
+      <div>
+        <div class="exp-org">IIT Kanpur</div>
+        <div class="exp-role">Undergraduate Researcher</div>
+        <ul class="exp-bullets">
+          <li>Designed bi-leaflet mechanical heart valves and optimized geometric parameters using CAD and CFD simulations.</li>
+          <li>Analyzed wall shear stresses to assess durability and thrombosis risk, enhancing valve efficiency and biomedical performance.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">May – Jul 2022</div><div class="exp-location">Noida, India</div></div>
+      <div>
+        <div class="exp-org">UFlex Industries Ltd.</div>
+        <div class="exp-role">Engineering Intern — Manufacturing &amp; Process Engineering</div>
+        <ul class="exp-bullets">
+          <li>Assisted in process optimization of extrusion, lamination, and printing lines by studying material flow and machine parameters.</li>
+          <li>Collaborated with senior engineers on preventive maintenance and root-cause analysis of mechanical failures.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-label">04</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skills-layout fade-up">
+    <div class="skill-block">
+      <span class="skill-block-icon">◈</span>
+      <div class="skill-block-title">CAD &amp; Design</div>
+      <div class="skill-tags-wrap">
+        <span class="skill-tag">SolidWorks</span>
+        <span class="skill-tag">CATIA V5</span>
+        <span class="skill-tag">Fusion 360</span>
+        <span class="skill-tag">Parametric Modeling</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-block-icon">⬡</span>
+      <div class="skill-block-title">Simulation &amp; Analysis</div>
+      <div class="skill-tags-wrap">
+        <span class="skill-tag">ANSYS</span>
+        <span class="skill-tag">ABAQUS</span>
+        <span class="skill-tag">FEA</span>
+        <span class="skill-tag">CFD</span>
+        <span class="skill-tag">MuJoCo</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <span class="skill-block-icon">⌇</span>
+      <div class="skill-block-title">Programming &amp; Tools</div>
+      <div class="skill-tags-wrap">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">Raspberry Pi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-up">
+    <span class="section-label">05</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid fade-up">
+
+    <div class="project-card">
+      <img src="https://lh3.googleusercontent.com/d/1w3YRhko24OuDuUQmGyE5mHsPeHUU455N" class="project-img" alt="Quadruped Robot Krabby" onerror="this.outerHTML='<div class=\'project-placeholder\'>12-DOF</div>'">
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag">Robotics</span><span class="project-tag">MuJoCo</span><span class="project-tag">Sim-to-Real</span></div>
+        <h3 class="project-title">Quadruped Robot "Krabby"</h3>
+        <p class="project-desc">Engineered a 12-DOF legged agent using Inverse Kinematics to map 3D Cartesian trajectories to joint space. Implemented a Trot-Gait scheduler with contact-force estimation. Achieved stable locomotion at 25.4 cm/sec through Sim-to-Real validation.</p>
+        <div class="project-details" id="pd-krabby">
+          <div class="project-spec"><span class="project-spec-label">Max velocity</span><span class="project-spec-value">25.4 cm/sec</span></div>
+          <div class="project-spec"><span class="project-spec-label">Controller</span><span class="project-spec-value">Raspberry Pi (Python)</span></div>
+          <div class="project-spec"><span class="project-spec-label">Simulation</span><span class="project-spec-value">MuJoCo Digital Twin</span></div>
         </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <p>Hi! I'm Jayeshwar Singh, a mechanical engineer and researcher specializing in robotics, computational mechanics, and fluid dynamics. Currently pursuing my Master's in Mechanical Engineering at Columbia University with a focus on Robotics and Control Systems, I bring hands-on experience from research labs, industry internships, and competitive engineering teams.</p>
-            <p style="margin-top: 1rem;">My work spans across <strong>inverse kinematics</strong>, <strong>CFD/FEA simulations</strong>, <strong>additive manufacturing</strong>, and <strong>biomedical engineering</strong>. I'm passionate about problems where theory meets experimentation and simulation meets design, constantly seeking to bridge the gap between computational models and real-world applications.</p>
-            <p style="margin-top: 1rem;">With published research in composite materials optimization and experience in developing robotics systems from concept to prototype, I'm actively seeking engineering opportunities where I can contribute to innovative solutions in robotics, simulation, and mechanical design.</p>
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/1Px-NQ9Fw411Xc5vt87tUYO-lLXGsIN3q/view" target="_blank" class="btn-proj btn-proj-primary">Watch Video</a>
+          <button class="btn-proj btn-proj-secondary" onclick="toggleDetails('pd-krabby',this)">Specs</button>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-container">
-            <div class="edu-card">
-                <div class="school">Columbia University</div>
-                <h3>MS in Mechanical Engineering (Focus: Robotics and Control)</h3>
-                <div class="date">New York, NY | Expected Dec 2026</div>
-                <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
-                    <strong>Relevant Coursework:</strong>  Theoretical and Applied Robotics, Industrial Automation, Biomedical Design, Data Science for Mechanical Systems, 
-                    Computational Fluid Dynamics, Continuous Control Systems
-                </p>
-            </div>
-
-            <div class="edu-card">
-                <div class="school">Shiv Nadar Institution of Eminence</div>
-                <h3>BTech in Mechanical Engineering (Focus: Computational Techniques)</h3>
-                <div class="date">Greater Noida, India | May 2025</div>
-                <p style="color: #cbd5e1; margin-top: 10px; font-size: 0.9rem;">
-                    <strong>Academic Standing:</strong> CGPA: 8.29/10 | Achieved 100% result in final year major project
-                </p>
-                <p style="color: #cbd5e1; margin-top: 5px; font-size: 0.9rem;">
-                    <strong>Relevant Coursework:</strong> Mechatronics, Computational Fluid Dynamics, Composite Materials, Finite Element Method
-                </p>
-            </div>
+    <div class="project-card">
+      <img src="https://lh3.googleusercontent.com/d/1XURgGoFMdBXA2Wz9LkLIG8J5I2PmFocP" class="project-img" alt="UR5 Manipulator" onerror="this.outerHTML='<div class=\'project-placeholder\'>6-DOF</div>'">
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag">Kinematics</span><span class="project-tag">MATLAB</span><span class="project-tag">Automation</span></div>
+        <h3 class="project-title">6-DOF UR5 Elbow Manipulator</h3>
+        <p class="project-desc">Conducted analytical Denavit-Hartenberg frame derivation for an 8-solution IK configuration. Performed Jacobian Singularity Analysis to map the manipulability ellipsoid and identify dead zones for optimizing automated sorting trajectories.</p>
+        <div class="project-details" id="pd-ur5">
+          <div class="project-spec"><span class="project-spec-label">Degrees of freedom</span><span class="project-spec-value">6 revolute</span></div>
+          <div class="project-spec"><span class="project-spec-label">Software</span><span class="project-spec-value">MATLAB</span></div>
+          <div class="project-spec"><span class="project-spec-label">Analysis</span><span class="project-spec-value">Forward &amp; Inverse Kinematics</span></div>
         </div>
-    </section>
-
-    <section id="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="experience-container">
-            <div class="exp-card">
-                <h3>Columbia University</h3>
-                <div class="position">Graduate Researcher</div>
-                <div class="date">New York, NY | Sep 2025 - Present</div>
-                <ul>
-                    <li>Designed and developed a 3RRS parallel-mechanism hippotherapy simulator via CAD modeling, kinematic and dynamic analysis, and FEA to replicate horse-like pelvic motion for rehabilitation applications</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Columbia University - Mechanical Engineering Department</h3>
-                <div class="position">Teaching Assistant (Course: Digital Manufacturing)</div>
-                <div class="date">New York, NY | Jan 2026 - May 2026</div>
-                <ul>
-                    <li>Instructed and evaluated students on laser printing, conventional 3D printing, embroidery, and food 3D printing assignments and projects under Professor Jonathan Blutinger</li>
-                    <li>Assisted the course instructor in facilitating lectures, leading technical discussions, and conducting one-on-one student consultations to enhance learning outcomes</li>
-                    <li>Provided hands-on guidance in additive manufacturing technologies, bridging theoretical concepts with practical laboratory applications</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Shiv Nadar Institution of Eminence</h3>
-                <div class="position">Undergraduate Researcher</div>
-                <div class="date">Greater Noida, India | Aug 2024 - May 2025</div>
-                <ul>
-                    <li>Evaluated mechanical property differences between virgin and recycled polypropylene via tensile testing on extruded samples created on ABAQUS software, highlighting effects of heating variation on mechanical performance</li>
-                    <li>Conducted tensile testing on Universal Testing Machine, performed Scanning Electron Microscopy to assess porosity, and used feeler gauge to measure warpage</li>
-                    <li>Investigated additive manufacturing and composite reinforcement methods to enhance strength and toughness of 3D printed polymers designed on ABAQUS software</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>UFlex Industries Ltd.</h3>
-                <div class="position">Engineering Intern - Manufacturing & Process Engineering</div>
-                <div class="date">Noida, India | May 2022 - Jul 2022</div>
-                <ul>
-                    <li>Worked within the engineering department of a multinational flexible packaging manufacturer, gaining hands-on exposure to large-scale industrial production systems</li>
-                    <li>Assisted in process optimization of extrusion, lamination, and printing lines by studying material flow, machine parameters, and downtime causes</li>
-                    <li>Collaborated with senior engineers on preventive maintenance planning and root-cause analysis of mechanical failures to improve operational efficiency</li>
-                    <li>Developed practical understanding of industrial standards, quality control practices, and safety protocols in high-throughput manufacturing environments</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Hindustan Aeronautics Limited (HAL)</h3>
-                <div class="position">Industrial Intern – Aerospace Systems & Structural Analysis</div>
-                <div class="date">Bengaluru, India | Jun 2024 – Jul 2024</div>
-                <ul>
-                    <li>Gained in-depth exposure to aerospace-grade manufacturing, assembly, and inspection processes within India's premier defense aerospace organization</li>
-                    <li>Studied landing gear systems in fixed- and rotary-wing aircraft, focusing on load paths, shock absorption mechanisms, and fatigue considerations</li>
-                    <li>Performed structural modeling and stress analysis of aircraft components using CATIA V5 and ANSYS, applying principles of strength of materials and aerospace design standards</li>
-                    <li>Observed non-destructive testing (NDT) techniques, quality assurance workflows, and certification procedures critical to airworthiness and safety compliance</li>
-                    <li>Interacted with multidisciplinary teams across design, production, and quality divisions, strengthening systems-level understanding of aerospace engineering programs</li>
-                    <li>Applied principles of aerodynamics, strength of materials, and mechanics to analyze aerospace systems, with focused learning on landing gear design and performance using CATIA V5 and ANSYS</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Indian Institute of Technology Kanpur</h3>
-                <div class="position">Undergraduate Researcher</div>
-                <div class="date">Kanpur, India | May 2023 - Jul 2023</div>
-                <ul>
-                    <li>Designed bi-leaflet mechanical heart valves and optimized geometric parameters using CAD and CFD simulations to improve flow characteristics</li>
-                    <li>Analyzed wall shear stresses to assess durability and thrombosis risk, enhancing valve efficiency, long-term reliability, and biomedical performance</li>
-                </ul>
-            </div>
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/1aaUZ13SlBvrJWq7rKlB1xZO0N0URRpO6/view" target="_blank" class="btn-proj btn-proj-primary">Analysis Report</a>
+          <button class="btn-proj btn-proj-secondary" onclick="toggleDetails('pd-ur5',this)">Specs</button>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>🔧 CAD & Design</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">SOLIDWORKS</span>
-                    <span class="skill-tag">CATIA V5</span>
-                    <span class="skill-tag">Autodesk Fusion 360</span>
-                    <span class="skill-tag">Parametric Modeling</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>⚙️ Simulation & Analysis</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">ANSYS</span>
-                    <span class="skill-tag">ABAQUS</span>
-                    <span class="skill-tag">FEA</span>
-                    <span class="skill-tag">CFD</span>
-                    <span class="skill-tag">MuJoCo</span>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>💻 Programming & Tools</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">MATLAB</span>
-                    <span class="skill-tag">Microsoft Office</span>
-                </div>
-            </div>
+    <div class="project-card">
+      <img src="https://lh3.googleusercontent.com/d/1uXnRnAHZoOegDP_jZREYxUCaCcnWTf9O" class="project-img" alt="PLA-TPU Composite" onerror="this.outerHTML='<div class=\'project-placeholder\'>FEA</div>'">
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag">Materials</span><span class="project-tag">Additive Mfg</span><span class="project-tag">Published</span></div>
+        <h3 class="project-title">PLA–TPU Composite Optimization</h3>
+        <p class="project-desc">Designed geometric interlocking interfaces using non-linear FEA in ABAQUS with a hyperelastic model. Validated through ASTM D638 tensile testing and SEM for porosity assessment and inter-layer adhesion studies.</p>
+        <div class="project-details" id="pd-pla">
+          <div class="project-spec"><span class="project-spec-label">Software</span><span class="project-spec-value">ABAQUS / CATIA V5</span></div>
+          <div class="project-spec"><span class="project-spec-label">Testing</span><span class="project-spec-value">Tensile · SEM · Warpage</span></div>
+          <div class="project-spec"><span class="project-spec-label">DOI</span><span class="project-spec-value"><a href="https://doi.org/10.1177/09544089251390138" target="_blank">10.1177/09544089...</a></span></div>
         </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Technical Portfolio</h2>
-        <div class="projects-grid">
-
-            <div class="project-card">
-                <div class="project-header">
-                    <img src="https://lh3.googleusercontent.com/d/1w3YRhko24OuDuUQmGyE5mHsPeHUU455N" alt="Quadruped Robot Krabby">
-                </div>
-                <div class="project-content">
-                    <p class="project-meta">ROBOTICS · MUJOCO · SIM-TO-REAL</p>
-                    <h3>Quadruped Robot "Krabby"</h3>
-                    <p>Engineered a 12-DOF legged agent using Inverse Kinematics (IK) to map 3D Cartesian trajectories to joint space. Implemented a Trot-Gait scheduler with contact-force estimation to maintain dynamic stability. Achieved stable locomotion at 25.4 cm/sec through Sim-to-Real validation.</p>
-                    <button class="toggle-tech" onclick="toggleTech('krabby-tech')">📊 Technical Spotlight</button>
-                    <div id="krabby-tech" class="tech-details">
-                        <table class="tech-table">
-                            <tr><td>Max Velocity</td><td>25.4 cm/sec</td></tr>
-                            <tr><td>Controller</td><td>Raspberry Pi (Python)</td></tr>
-                            <tr><td>Simulation</td><td>MuJoCo Digital Twin</td></tr>
-                        </table>
-                    </div>
-                    <a href="https://drive.google.com/file/d/1Px-NQ9Fw411Xc5vt87tUYO-lLXGsIN3q/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">🎥 Watch Journey Video</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <img src="https://lh3.googleusercontent.com/d/1XURgGoFMdBXA2Wz9LkLIG8J5I2PmFocP" alt="UR5 Manipulator">
-                </div>
-                <div class="project-content">
-                    <p class="project-meta">KINEMATICS · MATLAB · AUTOMATION</p>
-                    <h3>6-DOF UR5 Elbow Manipulator</h3>
-                    <p>Conducted analytical Denavit-Hartenberg (D-H) frame derivation for an 8-solution IK configuration. Performed Jacobian Singularity Analysis to map the manipulability ellipsoid and identify "dead zones" within the workspace to optimize automated sorting trajectories.</p>
-                    <button class="toggle-tech" onclick="toggleTech('ur5-tech')">📊 Technical Spotlight</button>
-                    <div id="ur5-tech" class="tech-details">
-                        <table class="tech-table">
-                            <tr><td>Degrees of Freedom</td><td>6 (Revolute)</td></tr>
-                            <tr><td>Software</td><td>MATLAB</td></tr>
-                            <tr><td>Analysis</td><td>Forward & Inverse Kinematics</td></tr>
-                        </table>
-                    </div>
-                    <a href="https://drive.google.com/file/d/1aaUZ13SlBvrJWq7rKlB1xZO0N0URRpO6/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📄 Kinematic Analysis Report</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <img src="https://lh3.googleusercontent.com/d/1uXnRnAHZoOegDP_jZREYxUCaCcnWTf9O" alt="PLA-TPU Composite" onerror="this.style.display='none'; this.parentElement.innerHTML='🧪';">
-                </div>
-                <div class="project-content">
-                    <p class="project-meta">MATERIALS · ADDITIVE MFG · FEA · PUBLISHED</p>
-                    <h3>PLA–TPU Composite Optimization</h3>
-                    <p>Designed geometric interlocking interfaces using Non-linear FEA in ABAQUS with a hyperelastic model. Validated results through ASTM D638 tensile testing and SEM for porosity assessment and inter-layer adhesion studies.</p>
-                    <button class="toggle-tech" onclick="toggleTech('pla-tech')">📊 Technical Spotlight</button>
-                    <div id="pla-tech" class="tech-details">
-                        <table class="tech-table">
-                            <tr><td>Software</td><td>ABAQUS / CATIA V5</td></tr>
-                            <tr><td>Testing</td><td>Tensile, SEM, Warpage</td></tr>
-                            <tr><td>DOI</td><td><a href="https://doi.org/10.1177/09544089251390138" target="_blank">10.1177/09544089251390138</a></td></tr>
-                        </table>
-                    </div>
-                    <a href="https://drive.google.com/file/d/1szzp2FSrCbGnuaZ8D1EfwKyKXRyACvav/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📥 Download Research Paper</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <img src="https://drive.google.com/file/d/1O0yDH4E1t62ir5i4O4TdzfuXsVE50twl/view?usp=drive_link" alt="Polypropylene strength study" onerror="this.style.display='none'; this.parentElement.innerHTML='🧪';">
-                </div>
-                <div class="project-content">
-                    <p class="project-meta">MATERIALS · ADDITIVE MFG · FEA · PUBLISHED</p>
-                    <h3>Virgin and Recycled Polypropylene strength study</h3>
-                    <p>Designed geometric interlocking interfaces using Non-linear FEA in ABAQUS with a hyperelastic model. Validated results through ASTM D638 tensile testing and SEM for porosity assessment and inter-layer adhesion studies.</p>
-                    <button class="toggle-tech" onclick="toggleTech('Polypropylene-tech')">📊 Technical Spotlight</button>
-                    <div id="Polypropylene-tech" class="tech-details">
-                        <table class="tech-table">
-                            <tr><td>Software</td><td>ABAQUS / CATIA V5</td></tr>
-                            <tr><td>Testing</td><td>Tensile, SEM, Warpage</td></tr>
-                            <tr><td>DOI</td><td><a href="https://doi.org/10.1021/acsomega.5c09444" target="_blank"></a></td></tr>
-                        </table>
-                    </div>
-                    <a href="https://doi.org/10.1021/acsomega.5c09444" target="_blank" class="btn-primary" style="margin-top:15px">📥 Download Research Paper</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <img src="https://lh3.googleusercontent.com/d/1M6vEwReZKVKZpb6dgPJ5EGNHQr8Uts_b" alt="Mechanical Heart Valve" onerror="this.style.display='none'; this.parentElement.innerHTML='❤️';">
-                </div>
-                <div class="project-content">
-                    <p class="project-meta">CFD · FSI · ANSYS · IIT KANPUR</p>
-                    <h3>Bi-Leaflet Mechanical Heart Valve Analysis</h3>
-                    <p>Executed transient Fluid-Structure Interaction (FSI) in ANSYS. Modeled blood as a Non-Newtonian fluid under pulsatile flow to analyze Wall Shear Stress (WSS) and vortex formation, validating structural durability against fatigue limits.</p>
-                    <button class="toggle-tech" onclick="toggleTech('heart-tech')">📊 Technical Spotlight</button>
-                    <div id="heart-tech" class="tech-details">
-                        <table class="tech-table">
-                            <tr><td>Von Mises Stress</td><td>35.32 MPa</td></tr>
-                            <tr><td>Material</td><td>Pyrolytic Carbon</td></tr>
-                            <tr><td>Software</td><td>ANSYS Fluent / Workbench</td></tr>
-                        </table>
-                    </div>
-                    <a href="https://drive.google.com/file/d/10OR4tRq_lwg5SF8OKUTlt57Z7azjA3p-/view?usp=sharing" target="_blank" class="btn-primary" style="margin-top:15px">📂 View Transient Analysis Report</a>
-                </div>
-            </div>
-
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/1szzp2FSrCbGnuaZ8D1EfwKyKXRyACvav/view" target="_blank" class="btn-proj btn-proj-primary">Read Paper</a>
+          <button class="btn-proj btn-proj-secondary" onclick="toggleDetails('pd-pla',this)">Specs</button>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="leadership">
-        <h2 class="section-title">Leadership & Extra-Curricular</h2>
-
-        <div class="experience-container">
-            <div class="exp-card">
-                <h3>Mechanical Engineering Graduate Association (MEGA)</h3>
-                <div class="position">Chairperson of MS Student Advocacy</div>
-                <div class="date">Columbia University | Dec 2025 - Present</div>
-                <ul>
-                    <li>Acted as the primary liaison between students, faculty, and administration to address concerns and improve departmental processes</li>
-                    <li>Organized feedback forums, drove policy improvements, and ensured transparent communication to strengthen student support and engagement</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Department Representative</h3>
-                <div class="position">Graduate Mechanical Engineering Batch of 2026</div>
-                <div class="date">Columbia University | Sep 2025 - Present</div>
-                <ul>
-                    <li>Developed and implemented a resource management system that increased study material accessibility, resulting in a 30% increase in student usage of study materials and improved research outcomes over a semester</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <h3>Imprints – Dramatics Society</h3>
-                <div class="position">President</div>
-                <div class="date">Shiv Nadar University | Aug 2022 – May 2025</div>
-                <ul>
-                    <li>Led the university's official dramatics society, managing a multidisciplinary team of performers, writers, designers, and technical crew</li>
-                    <li>Directed and produced stage performances, street plays, and competitive productions, coordinating logistics, rehearsals, and creative direction</li>
-                    <li>Oversaw event planning, budgeting, and inter-university collaborations while mentoring junior members in performance, leadership, and team dynamics</li>
-                    <li>Strengthened communication, public engagement, and organizational leadership skills through high-pressure live performances and outreach initiatives</li>
-                </ul>
-            </div>
+    <div class="project-card">
+      <div class="project-placeholder">PP</div>
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag">Materials</span><span class="project-tag">FEA</span><span class="project-tag">Published</span></div>
+        <h3 class="project-title">Virgin vs. Recycled Polypropylene Study</h3>
+        <p class="project-desc">Compared mechanical properties of virgin and recycled polypropylene via tensile testing on ABAQUS-modeled extruded samples. Investigated effects of heating variation using SEM and feeler gauge warpage measurement.</p>
+        <div class="project-details" id="pd-pp">
+          <div class="project-spec"><span class="project-spec-label">Software</span><span class="project-spec-value">ABAQUS / CATIA V5</span></div>
+          <div class="project-spec"><span class="project-spec-label">Testing</span><span class="project-spec-value">Tensile · SEM · Warpage</span></div>
+          <div class="project-spec"><span class="project-spec-label">DOI</span><span class="project-spec-value"><a href="https://doi.org/10.1021/acsomega.5c09444" target="_blank">10.1021/acsomega...</a></span></div>
         </div>
-    </section>
+        <div class="project-actions">
+          <a href="https://doi.org/10.1021/acsomega.5c09444" target="_blank" class="btn-proj btn-proj-primary">Read Paper</a>
+          <button class="btn-proj btn-proj-secondary" onclick="toggleDetails('pd-pp',this)">Specs</button>
+        </div>
+      </div>
+    </div>
 
-    <section id="contact">
-        <footer>
-            <div style="max-width:900px;margin:auto;display:grid;gap:1.5rem;text-align:center">
-                
-                <h3 style="color:#e5e7eb;font-size:1.4rem">
-                    Let's Build Something Interesting
-                </h3>
+    <div class="project-card">
+      <img src="https://lh3.googleusercontent.com/d/1M6vEwReZKVKZpb6dgPJ5EGNHQr8Uts_b" class="project-img" alt="Heart Valve" onerror="this.outerHTML='<div class=\'project-placeholder\'>FSI</div>'">
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag">CFD</span><span class="project-tag">FSI</span><span class="project-tag">Biomedical</span></div>
+        <h3 class="project-title">Bi-Leaflet Mechanical Heart Valve</h3>
+        <p class="project-desc">Executed transient Fluid-Structure Interaction in ANSYS. Modeled blood as a non-Newtonian fluid under pulsatile flow to analyze Wall Shear Stress and vortex formation, validating structural durability against fatigue limits.</p>
+        <div class="project-details" id="pd-heart">
+          <div class="project-spec"><span class="project-spec-label">Von Mises stress</span><span class="project-spec-value">35.32 MPa</span></div>
+          <div class="project-spec"><span class="project-spec-label">Material</span><span class="project-spec-value">Pyrolytic Carbon</span></div>
+          <div class="project-spec"><span class="project-spec-label">Software</span><span class="project-spec-value">ANSYS Fluent / Workbench</span></div>
+        </div>
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/10OR4tRq_lwg5SF8OKUTlt57Z7azjA3p-/view" target="_blank" class="btn-proj btn-proj-primary">Analysis Report</a>
+          <button class="btn-proj btn-proj-secondary" onclick="toggleDetails('pd-heart',this)">Specs</button>
+        </div>
+      </div>
+    </div>
 
-                <p style="color:#94a3b8;max-width:600px;margin:auto">
-                    Open to research collaborations, robotics internships, and mechanical design roles.
-                    Feel free to reach out — I usually reply fast.
-                </p>
+  </div>
+</section>
 
-                <div style="display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap">
-                    <a href="mailto:js6208@columbia.edu" class="btn-scholar">✉ Email</a>
-                    <a href="https://www.linkedin.com/in/jayeshwarsingh" target="_blank" class="btn-scholar">💼 LinkedIn</a>
-                    <a href="tel:+16462200302" class="btn-scholar">📞 Phone number</a>
-                </div>
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-header fade-up">
+    <span class="section-label">06</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Leadership</h2>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Dec 2025 – Present</div><div class="exp-location">Columbia University</div></div>
+      <div>
+        <div class="exp-org">MEGA — ME Graduate Association</div>
+        <div class="exp-role">Chairperson, MS Student Advocacy</div>
+        <ul class="exp-bullets">
+          <li>Primary liaison between students, faculty, and administration to address concerns and improve departmental processes.</li>
+          <li>Organized feedback forums and drove policy improvements to strengthen student support and engagement.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Sep 2025 – Present</div><div class="exp-location">Columbia University</div></div>
+      <div>
+        <div class="exp-org">ME Batch of 2026</div>
+        <div class="exp-role">Department Representative</div>
+        <ul class="exp-bullets">
+          <li>Developed a resource management system that increased study material accessibility, resulting in a 30% increase in student usage over one semester.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div><div class="exp-date">Aug 2022 – May 2025</div><div class="exp-location">Shiv Nadar University</div></div>
+      <div>
+        <div class="exp-org">Imprints — Dramatics Society</div>
+        <div class="exp-role">President</div>
+        <ul class="exp-bullets">
+          <li>Led the university's official dramatics society managing performers, writers, designers, and technical crew.</li>
+          <li>Directed and produced stage performances, street plays, and competitive productions at inter-university events.</li>
+          <li>Oversaw event planning, budgeting, and mentored junior members in performance and organizational leadership.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <hr style="border:0;border-top:1px solid rgba(59,130,246,.2);margin:2rem 0">
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-label">07</span>
+    <div class="section-line"></div>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-grid fade-up">
+    <div>
+      <h3 class="contact-title">Let's build something interesting.</h3>
+      <p class="contact-sub">Open to research collaborations, robotics internships, and mechanical design roles. I usually reply quickly.</p>
+      <div class="contact-links">
+        <a href="mailto:js6208@columbia.edu" class="contact-link">
+          <div class="contact-icon">✉</div>
+          <div><span class="contact-link-label">Email</span><span class="contact-link-value">js6208@columbia.edu</span></div>
+        </a>
+        <a href="https://www.linkedin.com/in/jayeshwarsingh" target="_blank" class="contact-link">
+          <div class="contact-icon">in</div>
+          <div><span class="contact-link-label">LinkedIn</span><span class="contact-link-value">jayeshwarsingh</span></div>
+        </a>
+        <a href="tel:+16462200302" class="contact-link">
+          <div class="contact-icon">☏</div>
+          <div><span class="contact-link-label">Phone</span><span class="contact-link-value">+1 (646) 220-0302</span></div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="avail-card">
+        <div class="avail-status"><span class="avail-dot"></span>Available for opportunities</div>
+        <div class="avail-headline">Open to the right role in robotics and mechanical engineering</div>
+        <ul class="avail-list">
+          <li>Research collaborations</li>
+          <li>Robotics internships</li>
+          <li>Mechanical design roles</li>
+          <li>CFD / FEA consulting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <p style="font-size:.9rem;color:#94a3b8">
-                    © 2026 <b style="color:#60a5fa">Jayeshwar Singh</b> · Mechanical Engineering · Robotics · Simulation
-                </p>
-            </div>
-        </footer>
-    </section>
+<footer>
+  <div>© 2026 Jayeshwar Singh</div>
+  <div>Columbia University · Mechanical Engineering · Robotics</div>
+</footer>
 
-    <script>
-        function toggleTech(id) {
-            const elem = document.getElementById(id);
-            elem.style.display = (elem.style.display === 'none' || elem.style.display === '') ? 'block' : 'none';
-        }
-    </script>
+<script>
+  function toggleDetails(id, btn) {
+    const el = document.getElementById(id);
+    const open = el.classList.toggle('open');
+    btn.textContent = open ? 'Hide' : 'Specs';
+  }
 
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
 </body>
-
 </html>
